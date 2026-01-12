@@ -284,11 +284,14 @@
     }
 
     .faq-toggle {
+        position: absolute;
+        z-index: 10;
         width: 32px;
         height: 32px;
         font-size: 16px;
-        top: -10px;
-        right: 16px;
+        bottom: 100px;
+        /* right: -1600px; */
+        left: 37vh;
     }
 
     .footer {
@@ -399,7 +402,7 @@
     }
 
     .rmobile {
-        transform: none;
+        transform: translateY(-8vh);
     }
 
     /* Hero Section */
@@ -941,7 +944,7 @@
         max-width: 260px;
     }
 
-    .partners {
+    /* .partners {
         position: relative;
         padding: 15px 0 20px;
         height: auto;
@@ -963,8 +966,16 @@
 
     .partner-list::-webkit-scrollbar {
         display: none;
-    }
-
+    } */
+     .section2{
+        transform: translateY(-8vh);
+     }
+     .section1{
+        margin: 0;
+     }
+     .partner-list{
+        margin: 0;
+     }
     .partnerbg {
         min-width: 70px;
         flex-shrink: 0;
@@ -988,6 +999,7 @@
         margin-top: 0;
         margin-bottom: 24px;
         padding: 24px 12px 18px;
+        transform: translateY(4vh);
         position: relative;
     }
 

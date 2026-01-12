@@ -1,22 +1,33 @@
 // FAQ Toggle Functionality
-document.querySelectorAll('.faq-question').forEach(question => {
+// Bind after DOM is ready because FAQ items are injected by data_scripts.js
+document.addEventListener('DOMContentLoaded', () => {
+  const setToggleSign = (qEl) => {
+    const t = qEl?.querySelector?.('.faq-toggle');
+    if (!t) return;
+    t.textContent = qEl.classList.contains('open') ? '−' : '+';
+  };
+
+  document.querySelectorAll('.faq-question').forEach(question => {
+    // Ensure initial sign matches current class
+    setToggleSign(question);
+
     question.addEventListener('click', function () {
-        // Remove open class from all questions
-        document.querySelectorAll('.faq-question').forEach(q => {
-            if (q !== this) {
-                // q.classList.remove('open');
-                q.querySelector('.faq-toggle').textContent = '+';
-            }
-        });
+      // Close others (keeps original UI style)
+      document.querySelectorAll('.faq-question').forEach(q => {
+        if (q !== this) {
+          q.classList.remove('open');
+          setToggleSign(q);
+        }
+      });
 
-        // Toggle current question
-        // this.classList.toggle('open');
-
-        // Change toggle text
-        const toggle = this.querySelector('.faq-toggle');
-        toggle.textContent = this.classList.contains('open') ? '−' : '+';
+      // Toggle current
+      this.classList.toggle('open');
+      setToggleSign(this);
     });
-});    // ===== SCROLL ANIMATION - OPTIMIZED ===== 
+  });
+});
+
+// ===== SCROLL ANIMATION - OPTIMIZED ===== 
 // ===== SCROLL ANIMATION =====
 const observerOptions = {
   threshold: 0.15,

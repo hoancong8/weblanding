@@ -131,22 +131,22 @@ const dataNews = [
     {
         img: "./images/iconweb5.jpg",
         title: "NFT Holder's Course Management Dashboard",
-        time:"24/02/2025",
+        time: "24/02/2025",
     },
     {
         img: "./images/iconweb5.jpg",
         title: "Cryptocurrency Portfolio Management",
-        time:"24/02/2025",
+        time: "24/02/2025",
     },
     {
         img: "./images/iconweb5.jpg",
         title: "Digital Coin Management",
-        time:"24/02/2025",
+        time: "24/02/2025",
     },
     {
         img: "./images/iconweb5.jpg",
         title: "Virtual Currency Course",
-        time:"24/02/2025",
+        time: "24/02/2025",
     },
 ]
 const featureContainer = document.getElementById("featuresGrid");
@@ -164,45 +164,67 @@ if (featureContainer) {
 `).join("");
 }
 
-const dataPartners = [
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 1"
-        
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 2"
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 3"
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 4"
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 4"
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 4"
-    },
-    {
-        img: "./images/kucoin.png",
-        title: "Partner 4"
-    },
-]
-const listPartner = document.getElementById("partnerList");
-if (listPartner) {
-    listPartner.innerHTML = dataPartners.map(item => `
-            <div class="partnerbg scroll-fade-in delay-1">
-                <div class="partner">
-                    <img src="${item.img}" alt="${item.title}" />
-                </div>
-            </div>
-`).join("");
-}
 
+
+
+
+const dataPartners = [
+  { img: "./images/kucoin.png", title: "Partner 1" },
+  { img: "./images/kucoin.png", title: "Partner 2" },
+  { img: "./images/kucoin.png", title: "Partner 3" },
+  { img: "./images/kucoin.png", title: "Partner 4" },
+  { img: "./images/kucoin.png", title: "Partner 5" },
+  { img: "./images/kucoin.png", title: "Partner 6" },
+];
+
+const listPartner = document.getElementById("partnerList");
+
+if (listPartner) {
+  // render 1 lần
+  listPartner.innerHTML = dataPartners.map(item => `
+    <div class="partnerbg">
+      <div class="partner">
+        <img src="${item.img}" alt="${item.title}" />
+      </div>
+    </div>
+  `).join("");
+
+  // clone đúng 1 lần
+  listPartner.innerHTML = listPartner.innerHTML + listPartner.innerHTML + listPartner.innerHTML+ listPartner.innerHTML;
+
+  // bật marquee class sau khi đo xong để tránh nhảy
+  const start = () => {
+    // width đúng của "1 vòng" = nửa track
+    const loop = listPartner.scrollWidth / 2;
+
+    // set biến loop
+    listPartner.style.setProperty("--loop", `${loop}px`);
+
+    // tốc độ tính theo px/s
+    const speed = 90; // px/s
+    listPartner.style.animationDuration = `${loop / speed}s`;
+
+    // bắt đầu chạy sau khi đã set xong
+    listPartner.classList.add("marquee");
+  };
+
+  // đợi ảnh load xong để đo chính xác
+  const imgs = [...listPartner.querySelectorAll("img")];
+  let done = 0;
+
+  const tick = () => {
+    done++;
+    if (done >= imgs.length) start();
+  };
+
+  if (imgs.length === 0) start();
+  else {
+    imgs.forEach(img => {
+      if (img.complete) tick();
+      else {
+        img.addEventListener("load", tick);
+        img.addEventListener("error", tick);
+      }
+    });
+  }
+}

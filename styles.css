@@ -27,6 +27,7 @@
     width: 28px;
     height: 28px;
 }
+
 .menu-toggle {
     display: none;
     font-size: 26px;
@@ -155,9 +156,7 @@
 }
 
 
-.section1{
-
-}
+.section1 {}
 
 
 /* ===== PARTNER SECTION ===== */
@@ -166,8 +165,10 @@
     min-height: 140vh;
     width: 100%;
     overflow: hidden;
-    background: none; /* bỏ bg trực tiếp */
+    background: none;
+    /* bỏ bg trực tiếp */
 }
+
 .section2::before {
     content: "";
     position: absolute;
@@ -177,7 +178,8 @@
     background-position: center;
     background-repeat: no-repeat;
 
-    transform: translateY(-320px); /* LÙI BG LÊN */
+    transform: translateY(-320px);
+    /* LÙI BG LÊN */
     z-index: -1;
 }
 
@@ -250,6 +252,41 @@
     filter: brightness(1.1);
 }
 
+.partner-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+}
+
+.partner-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+/* 1 hàng – không xuống dòng */
+.partnerbg {
+    flex-shrink: 0;
+}
+
+/* animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* hover thì dừng (tuỳ thích) */
+.partner-marquee:hover .partner-track {
+    animation-play-state: paused;
+}
+
 
 /* ===== HOW IT WORKS SECTION ===== */
 .how-it-works {
@@ -260,6 +297,7 @@
     margin-top: 15%;
     text-align: center;
 }
+
 .how-inner {
     position: relative;
     max-width: 900px;
@@ -271,6 +309,7 @@
     font-weight: 700;
     margin-bottom: 12px;
 }
+
 .how-it-works p {
     font-size: 14px;
     color: #bdbdbd;
@@ -319,7 +358,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
+
 }
 
 .exchange-grid {
@@ -473,12 +512,12 @@
     transform: translateY(0);
 }
 
-.exchange-container{
+.exchange-container {
     position: relative;
     display: flex;
     transform: translateY(-90px);
     left: 0;
-    right: 0;  
+    right: 0;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -492,10 +531,11 @@
 
 
 /* section3 */
-.section3{
+.section3 {
     transform: translateY(-120px);
     background-image: url("./images/bgweb3.png");
 }
+
 /* ===== FEATURES SECTION ===== */
 .features-section {
     padding: 80px 20px;
@@ -747,35 +787,43 @@
 
 /* COINS DECORATION */
 /* base */
-.coin{
-  will-change: transform, filter;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+.coin {
+    will-change: transform, filter;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 
-  filter:
-    drop-shadow(0 8px 16px rgba(0,0,0,.35))
-    drop-shadow(0 0 14px rgba(255, 200, 80, .45));
+    filter:
+        drop-shadow(0 8px 16px rgba(0, 0, 0, .35)) drop-shadow(0 0 14px rgba(255, 200, 80, .45));
 }
 
 /* Lên xuống nhịp nhàng */
 @keyframes floatY {
-  0%, 100% { transform: translate3d(0, 0px, 0); }
-  50%      { transform: translate3d(0, -26px, 0); }
+
+    0%,
+    100% {
+        transform: translate3d(0, 0px, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -26px, 0);
+    }
 }
 
 /* mỗi coin lệch nhịp cho tự nhiên */
-.coin.coin1{
-  animation: floatY 4.0s ease-in-out infinite;
-  animation-delay: -0.8s;
+.coin.coin1 {
+    animation: floatY 4.0s ease-in-out infinite;
+    animation-delay: -0.8s;
 }
-.coin.coin2{
-  animation: floatY 6.0s ease-in-out infinite;
-  animation-delay: -2.1s;
+
+.coin.coin2 {
+    animation: floatY 6.0s ease-in-out infinite;
+    animation-delay: -2.1s;
 }
-.coin.coin3{
-  animation: floatY 3.4s ease-in-out infinite;
-  animation-delay: -3.3s;
+
+.coin.coin3 {
+    animation: floatY 3.4s ease-in-out infinite;
+    animation-delay: -3.3s;
 }
 
 
@@ -869,9 +917,11 @@
     0% {
         transform: translate(-50%, -50%) translateY(0);
     }
+
     50% {
         transform: translate(-50%, -50%) translateY(-20px);
     }
+
     100% {
         transform: translate(-50%, -50%) translateY(0);
     }
@@ -900,7 +950,7 @@
 .faq-box {
     border-radius: 24px;
     padding: 32px;
-    
+
     margin: 40px auto;
     max-width: 900px;
     background: url("./images/bgweb4.svg") no-repeat center center/cover;
@@ -914,7 +964,6 @@
     content: '';
     position: absolute;
     inset: 0;
-    /* background: linear-gradient(135deg, rgba(20, 10, 5, 0.7), rgba(40, 20, 10, 0.5)); */
     border-radius: 24px;
     pointer-events: none;
     filter: drop-shadow(0 0 30px rgba(255, 140, 0, 0.1));
@@ -925,7 +974,7 @@
     position: relative;
     padding-right: 24px;
     z-index: 1;
-    height: 150px;
+    height: auto;
     margin-bottom: 24px;
     overflow: visible;
     background-image: url("./images/rectangle2.svg");
@@ -978,7 +1027,7 @@
 .faq-toggle {
     position: absolute;
     top: -10%;
-    right: 12px;
+    right: 0px;
     z-index: 10;
     width: 40px;
     height: 40px;
@@ -1126,3 +1175,95 @@
     pointer-events: none;
     z-index: 1;
 }
+
+
+
+
+
+
+
+
+.section1 {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.section1::before,
+.section1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 120px;
+    /* độ rộng vùng mờ */
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* mờ bên trái */
+.section1::before {
+    left: 0;
+    background: linear-gradient(to right,
+            #020202 0%,
+            rgba(2, 2, 2, 0) 100%);
+}
+
+/* mờ bên phải */
+.section1::after {
+    right: 0;
+    background: linear-gradient(to left,
+            #020202 0%,
+            rgba(2, 2, 2, 0) 100%);
+}
+
+.partner-list {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: nowrap !important;
+
+    width: max-content;
+    will-change: transform;
+}
+
+/* track A + B chạy bằng translateX, tuyệt đối không reset giật */
+.partner-list.marquee {
+    animation: marqueeMove linear infinite;
+}
+
+@keyframes marqueeMove {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(calc(-1 * var(--loop)), 0, 0);
+    }
+}
+
+.partnerbg {
+    flex-shrink: 0;
+}
+
+/* hover vào track hoặc vào section đều dừng */
+.partner-list.marquee:hover {
+    animation-play-state: paused;
+}
+
+/* (tuỳ chọn) hover vào vùng chứa cũng dừng */
+.section1:hover .partner-list.marquee {
+    animation-play-state: paused;
+}
+
+
+
+
+
+
+
+
