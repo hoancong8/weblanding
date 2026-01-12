@@ -1,4 +1,5 @@
 /* ===== HEADER ===== */
+
 .nav {
     position: absolute;
     z-index: 10;
@@ -26,8 +27,15 @@
     width: 28px;
     height: 28px;
 }
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
 
 .menu a {
+    position: relative;
+    z-index: 10;
     margin-left: 24px;
     text-decoration: none;
     color: #ccc;
@@ -147,7 +155,9 @@
 }
 
 
+.section1{
 
+}
 
 
 /* ===== PARTNER SECTION ===== */
@@ -498,6 +508,7 @@
     /* transform: translateY(-100px); */
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 32px;
 }
 
 .section-header {
@@ -736,47 +747,37 @@
 
 /* COINS DECORATION */
 /* base */
-.coin {
-  will-change: transform;
+.coin{
+  will-change: transform, filter;
   transform-origin: center;
+  transform-style: preserve-3d;
   backface-visibility: hidden;
-  filter: drop-shadow(0 10px 25px rgba(0,0,0,.25));
+
+  filter:
+    drop-shadow(0 8px 16px rgba(0,0,0,.35))
+    drop-shadow(0 0 14px rgba(255, 200, 80, .45));
 }
 
-/* 3 kiểu chuyển động khác nhau */
-@keyframes floatA {
-  0%,100% { transform: translate3d(0, 0, 0) rotateZ(0deg); }
-  50%     { transform: translate3d(0, -22px, 0) rotateZ(10deg); }
+/* Lên xuống nhịp nhàng */
+@keyframes floatY {
+  0%, 100% { transform: translate3d(0, 0px, 0); }
+  50%      { transform: translate3d(0, -26px, 0); }
 }
 
-@keyframes floatB {
-  0%,100% { transform: translate3d(0, 0, 0) rotateZ(-6deg); }
-  50%     { transform: translate3d(10px, -16px, 0) rotateZ(8deg); }
+/* mỗi coin lệch nhịp cho tự nhiên */
+.coin.coin1{
+  animation: floatY 4.0s ease-in-out infinite;
+  animation-delay: -0.8s;
+}
+.coin.coin2{
+  animation: floatY 6.0s ease-in-out infinite;
+  animation-delay: -2.1s;
+}
+.coin.coin3{
+  animation: floatY 3.4s ease-in-out infinite;
+  animation-delay: -3.3s;
 }
 
-@keyframes floatC {
-  0%,100% { transform: translate3d(0, 0, 0) rotateZ(4deg); }
-  50%     { transform: translate3d(-12px, -26px, 0) rotateZ(-10deg); }
-}
-
-/* gán từng coin khác nhau */
-.coin.coin1 {
-  /* width: 60px; */
-  animation: floatA 6.5s ease-in-out infinite;
-  animation-delay: -0.5s;
-}
-
-.coin.coin2 {
-  /* width: 50px; */
-  animation: floatB 8s ease-in-out infinite;
-  animation-delay: -2.2s;
-}
-
-.coin.coin3 {
-  /* width: 55px; */
-  animation: floatC 7.2s ease-in-out infinite;
-  animation-delay: -3.6s;
-}
 
 /* coin4 không có class coin nên nếu muốn animate thì thêm class coin cho nó */
 
@@ -857,10 +858,7 @@
 
 
 .coin5 {
-    
-    /* animation: 
-        floatCoin 4s ease-in-out infinite,
-        spinCoin 6s linear infinite; */
+    /* reserved for future coin animation/styles */
 }
 
 .coin5 img {
@@ -890,6 +888,7 @@
 /* section4 */
 
 /* ===== FAQ SECTION ===== */
+
 .faq-section {
     padding: 40px 20px;
     text-align: center;
@@ -901,6 +900,7 @@
 .faq-box {
     border-radius: 24px;
     padding: 32px;
+    
     margin: 40px auto;
     max-width: 900px;
     background: url("./images/bgweb4.svg") no-repeat center center/cover;
@@ -923,6 +923,7 @@
 
 .faq-item {
     position: relative;
+    padding-right: 24px;
     z-index: 1;
     height: 150px;
     margin-bottom: 24px;

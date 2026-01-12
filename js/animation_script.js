@@ -1,71 +1,107 @@
 // FAQ Toggle Functionality
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', function () {
-            // Remove open class from all questions
-            document.querySelectorAll('.faq-question').forEach(q => {
-                if (q !== this) {
-                    // q.classList.remove('open');
-                    q.querySelector('.faq-toggle').textContent = '+';
-                }
-            });
-            
-            // Toggle current question
-            // this.classList.toggle('open');
-
-            // Change toggle text
-            const toggle = this.querySelector('.faq-toggle');
-            toggle.textContent = this.classList.contains('open') ? '−' : '+';
-        });    });    // ===== SCROLL ANIMATION - OPTIMIZED ===== 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove('active');
-                // Trigger reflow để reset animation
-                void entry.target.offsetWidth;
-                entry.target.classList.add('active');
-            } else {
-                entry.target.classList.remove('active');
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function () {
+        // Remove open class from all questions
+        document.querySelectorAll('.faq-question').forEach(q => {
+            if (q !== this) {
+                // q.classList.remove('open');
+                q.querySelector('.faq-toggle').textContent = '+';
             }
         });
-    }, observerOptions);
 
-    // Observe all scroll animation elements
-    document.querySelectorAll(
-        '.scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in'
-    ).forEach(el => {
+        // Toggle current question
+        // this.classList.toggle('open');
+
+        // Change toggle text
+        const toggle = this.querySelector('.faq-toggle');
+        toggle.textContent = this.classList.contains('open') ? '−' : '+';
+    });
+});    // ===== SCROLL ANIMATION - OPTIMIZED ===== 
+// ===== SCROLL ANIMATION =====
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -15% 0px'
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+
+    // 🔥 CASE 1: chỉ chạy 1 lần (coin)
+    if (entry.target.classList.contains('scroll-once')) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        scrollObserver.unobserve(entry.target); // ✅ CHỈ 1 LẦN
+      }
+      return;
+    }
+
+    // 🔥 CASE 2: các animation scroll bình thường
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    } else {
+      entry.target.classList.remove('active');
+    }
+  });
+}, observerOptions);
+
+// Observe scroll animation elements
+document.querySelectorAll(
+  '.scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in'
+).forEach(el => {
+  el.style.willChange = 'transform, opacity';
+  scrollObserver.observe(el);
+});
+
+
+// Observe exchange cards and feature items
+document.querySelectorAll('.exchange-card, .feature-item, .card').forEach(el => {
+    if (!el.classList.contains('scroll-fade-in')) {
+        el.classList.add('scroll-fade-in');
         el.style.willChange = 'transform, opacity';
         scrollObserver.observe(el);
-    });
+    }
+});
 
-    // Observe exchange cards and feature items
-    document.querySelectorAll('.exchange-card, .feature-item, .card').forEach(el => {
-        if (!el.classList.contains('scroll-fade-in')) {
-            el.classList.add('scroll-fade-in');
-            el.style.willChange = 'transform, opacity';
-            scrollObserver.observe(el);
+// ===== PARTNERS HORIZONTAL SCROLL ANIMATION =====
+const partnerList = document.querySelector('.partner-list');
+if (partnerList) {
+    const partnersSection = document.querySelector('.partners');
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    window.addEventListener('scroll', () => {
+        if (partnersSection && partnersSection.getBoundingClientRect().top < window.innerHeight) {
+            // Calculate scroll percentage for smooth horizontal movement
+            const scrollProgress = window.scrollY / maxScroll;
+            const maxTranslate = partnerList.scrollWidth - partnersSection.clientWidth;
+            const translateX = Math.min(scrollProgress * maxTranslate * 2, maxTranslate);
+
+            partnerList.style.transform = `translateX(-${translateX}px)`;
+            partnerList.style.willChange = 'transform';
         }
     });
+}
 
-    // ===== PARTNERS HORIZONTAL SCROLL ANIMATION =====
-    const partnerList = document.querySelector('.partner-list');
-    if (partnerList) {
-        const partnersSection = document.querySelector('.partners');
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        
-        window.addEventListener('scroll', () => {
-            if (partnersSection && partnersSection.getBoundingClientRect().top < window.innerHeight) {
-                // Calculate scroll percentage for smooth horizontal movement
-                const scrollProgress = window.scrollY / maxScroll;
-                const maxTranslate = partnerList.scrollWidth - partnersSection.clientWidth;
-                const translateX = Math.min(scrollProgress * maxTranslate * 2, maxTranslate);
-                
-                partnerList.style.transform = `translateX(-${translateX}px)`;
-                partnerList.style.willChange = 'transform';
-            }
-        });
-    }
+// ===== MOBILE MENU TOGGLE (hamburger) =====
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    if (!toggle || !menu) return;
+    const closeMenu = () => menu.classList.remove('show');
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('show');
+    });
+
+    // Close on clicking a link
+    menu.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', closeMenu);
+    });
+
+    // Close on clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menu.classList.contains('show')) return;
+        if (menu.contains(e.target) || toggle.contains(e.target)) return;
+        closeMenu();
+    });
+});
