@@ -1,6 +1,6 @@
 const exchanges = [
     {
-        logo: "./images/mexc.svg",
+        logo: "./images/mexc1.png",
         name: "MEXC",
         type: "Hàng ngày",
         code: "96643",

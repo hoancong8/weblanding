@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BackCom.Network</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./scrollanim.css">
+    <link rel="stylesheet" href="./reponsive.css">
+    <style>
+        * {
+            /* box-sizing: border-box; */
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020202;
+            color: #fff;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <img src="./images/Maskgroup.png" alt="logo" />
+                <a href="#"
+                    style="text-decoration: none; color: white; font-weight: 600; font-size: 20px; margin-left: 8px;">BackCom.Network</a>
+            </div>
+            <div class="menu" id="menu">
+                <a class="active" href="#">Trang chủ</a>
+                <a href="#">Sàn hỗ trợ</a>
+                <a href="#">Tính năng</a>
+                <a href="#">Hỏi & đáp</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                ☰
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+
+
+        <div class="hero-content scroll-fade-left">
+            <div style="margin-top: 60px;" class="rmobile">
+                <h1>Hoàn tiền phí giao dịch</h1>
+                <p>
+                    Tối đa hóa lợi nhuận của bạn bằng cách lấy lại các khoản phí
+                    bạn đã trả khi giao dịch tiền điện tử với BackCom.Network
+                </p>
+                <div class="actions">
+                    <a class="btn-primary" href="#">
+                        <span>Bắt đầu</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a class="btn-link" href="#">
+                        <span>Tìm hiểu cách hoạt động</span>
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="hero-img">
+                <img src="./images/iconweb1.png" alt="Hero Image" />
+            </div>
+        </div>
+    </section>
+    <section class="section1" style="background-color: transparent;">
+        <div class="partner-list" id="partnerList">
+        </div>
+    </section>
+    <section class="section2">
+        <div class="exchange-container">
+            <div class="how-it-works">
+                <div class="how-inner">
+                    <h2 class="title">BackCom.NetWork hoạt động như thế nào</h2>
+                    <p>
+                        Chỉ cần sử dụng hoặc chuyển sang mã giới thiệu của chúng tôi
+                        và phí giao dịch của bạn sẽ được hoàn lại hàng ngày
+                    </p>
+
+                    <div class="tabs">
+                        <button class="tab active">All</button>
+                        <button class="tab">Forex</button>
+                        <button class="tab">Crypto</button>
+                        <button class="tab">Hàng hoá</button>
+                    </div>
+                </div>
+            </div>
+            <div class="exchange-section">
+                <div class="exchange-grid" id="exchangeGrid"></div>
+            </div>
+        </div>
+
+    </section>
+    <section class="section3">
+
+
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="title">Tính năng</h2>
+                <p class="subtitle">
+                    Chỉ cần sử dụng hoặc chuyển sang mã giới thiệu của chúng tôi
+                    thì phí giao dịch của bạn sẽ được hoàn lại hằng ngày
+                </p>
+            </div>
+            <div class="features-tabs">
+                <div class="features-tab-item active">Title 1</div>
+                <div class="features-tab-item">Title 2</div>
+                <div class="features-tab-item">Title 3</div>
+            </div>
+            <div class="features-grid" id="featuresGrid">
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="trees">
+
+                <div class="right top scroll-fade-in scroll-once"
+                    style="position: absolute; z-index: 4; right: -10%;top: -25%;">
+
+                    <div style="position: relative; left: -550px; top: 80px;">
+                        <img class="coin coin1" style="position: absolute;left: -120px;" src="./images/coin1.svg"
+                            alt="coin" />
+                        <img class="coin coin3" style="position: absolute;left: 320px; top:-50px;"
+                            src="./images/coin2.svg" alt="coin" />
+                        <img class="coin coin2" style="position: absolute;z-index: 3; left:370px; top: 260px;"
+                            src="./images/coin3.svg" alt="coin" />
+
+                        <img style="position: absolute; z-index: 1; top: 0 ;" src="./images/coin4.svg" alt="coin" />
+                        <!-- <img src="./images/coin5.svg" alt="coin" /> -->
+                    </div>
+
+                </div>
+
+
+                <div class="card left top cardbg1 ">
+                    <div class="center">
+                        <div class="card-icon">
+                            <img src="./images/clock.svg" alt="clock" />
+                        </div>
+                        <div class="card-content ">
+                            <h4>Hoàn tiền theo thời gian thực</h4>
+                            <p>Hoàn tiền 24/7 hàng ngày</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card left bottom cardbg1" style="bottom: 0; ">
+                    <div class="center">
+                        <div class="card-icon ">
+                            <img src="./images/shield.svg" alt="shield" />
+                        </div>
+                        <div class="card-content">
+                            <h4>Lưu trữ an toàn</h4>
+                            <p>Bảo mật dữ liệu và quyền riêng tư</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card right" style="position: absolute;z-index: 12;">
+                    <div class="center" style="margin: auto;">
+                        <div class="card-content">
+                            <h4>Tỷ lệ hoàn tiền cao</h4>
+                            <p>Tỷ lệ hoàn tiền tốt nhất cho nhà giao dịch</p>
+                        </div>
+                        <div class="card-icon">
+                            <img src="./images/dolar.svg" alt="dolar" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center" style="margin-left: 42%;position: absolute; z-index: 0;">
+                    <img src="./images/vector4.svg" alt="center" width="125%" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section4">
+        <h2 class="title">Câu hỏi thường gặp</h2>
+        <p class="subtitle">
+            Tìm câu trả lời cho các câu hỏi thường gặp về <strong>Bitb</strong>
+            và các dịch vụ của chúng tôi
+        </p>
+        <div class="faq-box" id="faq">
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="social-links">
+                    <img src="./images/telegram.png" alt="ins" class="social-icon" />
+                    <img src="./images/instagram.png" alt="Facebook" class="social-icon" />
+                    <img src="./images/facebook.png" alt="Facebook" class="social-icon" />
+                    <img src="./images/tiktok.png" alt="Facebook" class="social-icon" />
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p class="footer-text">@2024 - Mọi quyền được bảo lưu bởi BackCom.NetWork</p>
+            </div>
+        </div> <!-- Decorative elements -->
+        <div class="footer-decoration">
+        </div>
+        <img src="./images/iconfooter.svg" alt="" class="footer-image" />
+    </footer> <!-- END FOOTER SECTION -->
+
+    <script src="js/data_scripts.js"></script>
+    <script src="js/animation_script.js"></script>
+</body>
+
+</html>
