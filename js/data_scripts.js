@@ -65,13 +65,13 @@ const exchanges = [
 ];
 // ✅ Chờ HTML load xong rồi mới chạy JS (tránh query ra null)
 function observeScrollAnimations(container) {
-  container.querySelectorAll(
-    ".scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in"
-  ).forEach(el => {
-    el.classList.add("scroll-anim"); // nếu bạn đang dùng base transition
-    el.style.willChange = "transform, opacity";
-    scrollObserver.observe(el);
-  });
+    container.querySelectorAll(
+        ".scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in"
+    ).forEach(el => {
+        el.classList.add("scroll-anim"); // nếu bạn đang dùng base transition
+        el.style.willChange = "transform, opacity";
+        scrollObserver.observe(el);
+    });
 }
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Render từng item thành 1 card
-        grid.innerHTML = list.map(item => `
-      <div class="exchange-card delay-1">
+        grid.innerHTML = list.map((item, idx) => `
+      <div class="exchange-card scroll-fade-in delay-${(idx % 5) + 1}">
         <div class="card-header">
           <div class="card-header-inner">
             <img src="${item.logo}" alt="${item.name}" width="100" />
@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // 5.4) Nếu bấm "all" -> render toàn bộ
             if (filter === "all") {
                 renderExchanges(exchanges);
+                observeScrollAnimations(grid);
                 return;
             }
 
@@ -158,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // 5.6) Lọc exchanges theo category rồi render
             const filtered = exchanges.filter(x => x.name === filter);
             renderExchanges(filtered);
+            observeScrollAnimations(grid);
         });
     });
 
@@ -196,45 +198,61 @@ if (questionContainer) {
     }).join("");
 }
 
-const dataNews = [
-    {
-        img: "./images/iconweb5.jpg",
-        title: "NFT Holder's Course Management Dashboard",
-        time: "24/02/2025",
-    },
-    {
-        img: "./images/iconweb5.jpg",
-        title: "Cryptocurrency Portfolio Management",
-        time: "24/02/2025",
-    },
-    {
-        img: "./images/iconweb5.jpg",
-        title: "Digital Coin Management",
-        time: "24/02/2025",
-    },
-    {
-        img: "./images/iconweb5.jpg",
-        title: "Virtual Currency Course",
-        time: "24/02/2025",
-    },
-]
-const featureContainer = document.getElementById("featuresGrid");
-if (featureContainer) {
-    featureContainer.innerHTML = dataNews.map(item => `
-    <div class="feature-item scroll-fade-in delay-1">
-                    <div class="feature-image">
-                        <img src="${item.img}" alt="${item.title}" />
-                    </div>
-                    <div class="feature-info">
-                        <h3>${item.title}</h3>
-                        <p class="feature-date">24/02/2025</p>
-                    </div>
-                </div>
-`).join("");
-}
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const featureData = {
+    tab1: [
+      { img: "./images/iconweb5.jpg", title: "Feature 1", time: "24/02/2025" },
+      { img: "./images/iconweb5.jpg", title: "Feature 2", time: "24/02/2025" },
+       { img: "./images/iconweb5.jpg", title: "Feature 1", time: "24/02/2025" },
+      { img: "./images/iconweb5.jpg", title: "Feature 2", time: "24/02/2025" },
+    ],
+    tab2: [
+      { img: "./images/iconweb5.jpg", title: "Feature A", time: "24/02/2025" },
+      { img: "./images/iconweb5.jpg", title: "Feature B", time: "24/02/2025" },
+    ],
+    tab3: [
+      { img: "./images/iconweb5.jpg", title: "Feature X", time: "24/02/2025" },
+    ]
+  };
+
+  const featuresGrid = document.getElementById("featuresGrid");
+  const featureTabs = document.querySelectorAll(".features-tab-item");
+
+  if (!featuresGrid || featureTabs.length === 0) return;
+
+  function renderFeatures(list) {
+    featuresGrid.innerHTML = list.map((item, idx) => `
+      <div class="feature-item scroll-fade-in delay-${(idx % 5) + 1}">
+        <div class="feature-image">
+          <img src="${item.img}" alt="${item.title}" />
+        </div>
+        <div class="feature-info">
+          <h3>${item.title}</h3>
+          <p class="feature-date">${item.time}</p>
+        </div>
+      </div>
+    `).join("");
+
+    observeScrollAnimations(featuresGrid);
+  }
+
+  renderFeatures(featureData.tab1);
+
+  featureTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      featureTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const key = tab.dataset.tab;
+      renderFeatures(featureData[key] || []);
+    });
+  });
+
+});
 
 
 const dataPartners = [

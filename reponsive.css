@@ -403,7 +403,7 @@
         justify-content: space-between;
     }
 
-    .exchange-container{
+    .exchange-container {
         margin-top: 100px;
     }
 
@@ -1313,9 +1313,11 @@
         padding: 0px 10px 0;
         font-size: 8px;
     }
-    .bg2{
+
+    .bg2 {
         transform: translateY(0px);
     }
+
     .faq-toggle {
         position: absolute;
         z-index: 100;
@@ -1325,11 +1327,13 @@
         top: -2vh;
         right: -2vh;
     }
-    .section4{
+
+    .section4 {
         margin: 0px 0px;
         padding: 0;
         padding-bottom: 15px;
     }
+
     .footer {
         padding: 15px 12px 10px;
 
@@ -1358,5 +1362,32 @@
     /* IE/old Edge */
     body {
         -ms-overflow-style: none;
+    }
+
+    /* 1) Cho khu vực features luôn ở trên */
+    .section3,
+    .features-container,
+    .features-tabs {
+        position: relative;
+        z-index: 20;
+    }
+    
+    /* 2) Tabs chắc chắn nhận touch */
+    .features-tab-item {
+        position: relative;
+        z-index: 21;
+        pointer-events: auto;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 3) Các layer trang trí tuyệt đối không được ăn click */
+    .section2 img,
+    /* fire.svg (và ảnh absolute trong section2) */
+    .right.top,
+    /* div coin absolute đang đè */
+    .center img {
+        /* vector ở giữa */
+        pointer-events: none;
     }
 }
