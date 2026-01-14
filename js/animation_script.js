@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ===== SCROLL ANIMATION - OPTIMIZED ===== 
+
 // ===== SCROLL ANIMATION =====
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -36,7 +36,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
   });
 }, {
   threshold: 0.35,
-  rootMargin: "0px 0px -10% 0px" // vào sâu mới active => chống nhấp nháy mép
+  rootMargin: "0px 0px 0% 0px" // vào sâu mới active => chống nhấp nháy mép
 });
 
 // Auto add class nền scroll-anim nếu chưa có

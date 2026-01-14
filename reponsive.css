@@ -1019,6 +1019,7 @@
         transform: none;
         position: relative;
         z-index: auto;
+        margin-top: 10%;
     }
 
     .how-it-works {
