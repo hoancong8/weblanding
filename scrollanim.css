@@ -1,36 +1,60 @@
-/* Base: tất cả scroll anim dùng transition */
+/* ===== BASE ===== */
 .scroll-anim {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
-  transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translate3d(0, 28px, 0);
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.6s ease-out;
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
 
+/* Active */
 .scroll-anim.active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
 
-/* Variants */
-.scroll-fade-left { transform: translate3d(-80px, 0, 0); }
-.scroll-fade-right{ transform: translate3d( 80px, 0, 0); }
-.scroll-zoom-in   { transform: scale(0.92) rotate(-2deg); opacity: 0.6; }
-.scroll-rotate-in { transform: rotate(-10deg) scale(0.92); opacity: 0; }
+/* ===== VARIANTS ===== */
 
-/* Active state cho variants */
+/* Fade Up (mặc định) */
+.scroll-fade-in {
+  transform: translate3d(0, 32px, 0);
+}
+
+/* Fade Left */
+.scroll-fade-left {
+  transform: translate3d(-64px, 0, 0);
+}
+
+/* Fade Right */
+.scroll-fade-right {
+  transform: translate3d(64px, 0, 0);
+}
+
+/* Zoom In – rõ nhưng không gắt */
+.scroll-zoom-in {
+  transform: scale(0.94);
+  opacity: 0.5;
+}
+
+/* Rotate In – rất nhẹ, sang */
+.scroll-rotate-in {
+  transform: rotate(-3deg) scale(0.94);
+  opacity: 0;
+}
+
+/* Active cho tất cả variants */
+.scroll-fade-in.active,
 .scroll-fade-left.active,
 .scroll-fade-right.active,
 .scroll-zoom-in.active,
-.scroll-rotate-in.active{
+.scroll-rotate-in.active {
   opacity: 1;
   transform: translate3d(0,0,0) scale(1) rotate(0);
 }
-
-/* Delay dùng chung */
-.delay-1 { transition-delay: 0.05s; }
-.delay-2 { transition-delay: 0.10s; }
-.delay-3 { transition-delay: 0.15s; }
-.delay-4 { transition-delay: 0.20s; }
-.delay-5 { transition-delay: 0.25s; }
+.delay-1 { transition-delay: 0.06s; }
+.delay-2 { transition-delay: 0.12s; }
+.delay-3 { transition-delay: 0.18s; }
+.delay-4 { transition-delay: 0.24s; }
+.delay-5 { transition-delay: 0.30s; }
