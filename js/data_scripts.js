@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Render từng item thành 1 card
         grid.innerHTML = list.map(item => `
-      <div class="exchange-card scroll-fade-in delay-1">
+      <div class="exchange-card delay-1">
         <div class="card-header">
           <div class="card-header-inner">
             <img src="${item.logo}" alt="${item.name}" width="100" />

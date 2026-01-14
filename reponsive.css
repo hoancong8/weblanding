@@ -791,7 +791,7 @@
     }
 
     .section3 {
-        top: 10vh;
+        /* top: 10vh; */
     }
 
     /* FAQ Section */
@@ -1065,8 +1065,8 @@
 
     .how-it-works {
         margin-top: 0;
-        margin-bottom: 24px;
-        padding: 24px 12px 18px;
+        margin-bottom: 0px;
+        padding: 24px 12px 10px;
         position: relative;
     }
 
