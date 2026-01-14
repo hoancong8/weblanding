@@ -187,11 +187,13 @@
     .section2::before {
         transform: translateY(-380px);
     }
-    .section3{
+
+    .section3 {
         margin-top: 100px;
-        
+
     }
-    .exchange-container{
+
+    .exchange-container {
         margin-top: 100px;
     }
 }
@@ -1281,8 +1283,6 @@
 .section1:hover .partner-list.marquee {
     animation-play-state: paused;
 }
-
-
 
 
 
