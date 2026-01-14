@@ -1190,8 +1190,9 @@
     .wrapper {
         height: auto;
         min-height: auto;
-        transform: translateY(-10vh);
-        margin-bottom: 2%;
+        /* transform: translateY(-10vh); */
+        /* margin-bottom: 2%; */
+        margin-top: 50px;
         padding: 0 12px;
     }
 
@@ -1322,7 +1323,11 @@
         top: -2vh;
         right: -2vh;
     }
-
+    .section4{
+        margin: 0px 0px;
+        padding: 0;
+        padding-bottom: 15px;
+    }
     .footer {
         padding: 15px 12px 10px;
 

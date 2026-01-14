@@ -58,43 +58,54 @@
 .delay-3 { transition-delay: 0.18s; }
 .delay-4 { transition-delay: 0.24s; }
 .delay-5 { transition-delay: 0.30s; }
-
 .hero-img{
   max-width: 500px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* tạo không gian 3D */
+  perspective: 1000px;
 }
 
-/* Ảnh nhịp nhàng */
 .hero-img img{
   width: 100%;
   height: auto;
   display: block;
 
-  /* cho mượt */
-  will-change: transform, filter;
-  transform-origin: center;
+  /* cực quan trọng cho 3D */
+  transform-style: preserve-3d;
   backface-visibility: hidden;
+  transform-origin: center;
 
-  /* anim */
-  animation: heroFloat 4.5s ease-in-out infinite;
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.35));
+  will-change: transform;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,.35));
+
+  animation: swing3D 4.8s ease-in-out infinite;
 }
 
-/* hover thì “tươi” hơn */
+/* hover thì tăng lực */
 .hero-img img:hover{
-  animation-play-state: paused; /* hoặc bỏ dòng này nếu muốn vẫn chạy */
-  transform: translateY(-6px) scale(1.02);
+  /* animation-play-state: paused;  */
+  transform: rotateY(0deg) scale(1.03);
 }
 
-/* keyframes nhịp nhàng */
-@keyframes heroFloat{
-  0%, 100%{
-    transform: translate3d(0, 0px, 0) rotate(-1.2deg) scale(1);
+/* ===== KEYFRAMES ===== */
+@keyframes swing3D {
+  0% {
+    transform: rotateY(0deg) translateX(0);
   }
-  50%{
-    transform: translate3d(0, -18px, 0) rotate(1.2deg) scale(1.02);
+  25% {
+    transform: rotateY(-12deg) translateX(-10px);
+  }
+  50% {
+    transform: rotateY(0deg) translateX(0);
+  }
+  75% {
+    transform: rotateY(12deg) translateX(10px);
+  }
+  100% {
+    transform: rotateY(0deg) translateX(0);
   }
 }
