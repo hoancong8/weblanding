@@ -156,32 +156,47 @@
 }
 
 
-.section1 {}
+.section1 {
+    /* placeholder to avoid empty ruleset */
+    display: block;
+}
 
 
 /* ===== PARTNER SECTION ===== */
 .section2 {
     position: relative;
-    min-height: 140vh;
+    z-index: 0;
+    /* ✅ tạo stacking context để z-index:-1 hoạt động đúng */
     width: 100%;
     overflow: hidden;
     background: none;
-    /* bỏ bg trực tiếp */
 }
 
+/* Desktop */
 .section2::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("./images/bgweb2.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    transform: translateY(-320px);
-    /* LÙI BG LÊN */
     z-index: -1;
+
+    background: url("./images/bgweb2.png") no-repeat center/cover;
+    transform: translateY(-320px);
 }
+
+/* Mobile */
+@media (max-width:480px) {
+    .section2::before {
+        transform: translateY(-380px);
+    }
+    .section3{
+        margin-top: 100px;
+        
+    }
+    .exchange-container{
+        margin-top: 100px;
+    }
+}
+
 
 .partner-list {
     display: flex;
@@ -907,6 +922,7 @@
 
 .coin5 {
     /* reserved for future coin animation/styles */
+    display: block;
 }
 
 .coin5 img {
@@ -972,9 +988,15 @@
 
 .faq-item {
     position: relative;
+    display: block;
     padding-right: 24px;
     z-index: 1;
     height: auto;
+    margin-top: 0;
+    padding-top: 10px;
+    /* reserve space for the absolute .faq-toggle */
+    overflow: hidden;
+    /* avoid the toggle / hover scaling overlapping neighbors */
     margin-bottom: 24px;
     overflow: visible;
     background-image: url("./images/rectangle2.svg");
@@ -1259,8 +1281,6 @@
 .section1:hover .partner-list.marquee {
     animation-play-state: paused;
 }
-
-
 
 
 

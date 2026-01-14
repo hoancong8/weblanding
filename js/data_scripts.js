@@ -63,40 +63,106 @@ const exchanges = [
         cashback: "Tối đa 60%"
     }
 ];
-const grid = document.getElementById("exchangeGrid");
-if (grid) {
-    grid.innerHTML = exchanges.map(item => `
-    <div class="exchange-card scroll-fade-in delay-1">
+// ✅ Chờ HTML load xong rồi mới chạy JS (tránh query ra null)
+function observeScrollAnimations(container) {
+  container.querySelectorAll(
+    ".scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in"
+  ).forEach(el => {
+    el.classList.add("scroll-anim"); // nếu bạn đang dùng base transition
+    el.style.willChange = "transform, opacity";
+    scrollObserver.observe(el);
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+
+    // 1) Lấy 2 thẻ quan trọng
+    const grid = document.getElementById("exchangeGrid");     // nơi render card
+    const tabsWrap = document.getElementById("exchangeTabs"); // nơi chứa tab
+
+    // Nếu thiếu 1 trong 2 cái này thì thôi (tránh lỗi)
+    if (!grid || !tabsWrap) return;
+
+    // 2) Hàm render: nhận list -> vẽ HTML vào grid
+    function renderExchanges(list) {
+        // Nếu list rỗng thì hiện thông báo
+        if (!list || list.length === 0) {
+            grid.innerHTML = `<p style="text-align:center;color:#aaa;">Không có dữ liệu</p>`;
+            return;
+        }
+
+        // Render từng item thành 1 card
+        grid.innerHTML = list.map(item => `
+      <div class="exchange-card scroll-fade-in delay-1">
         <div class="card-header">
-            <div class="card-header-inner">
-                <img src="${item.logo}" alt="${item.name}" width="100" />
-            </div>
+          <div class="card-header-inner">
+            <img src="${item.logo}" alt="${item.name}" width="100" />
+          </div>
         </div>
 
         <div class="card-body">
-            <div class="row">
-                <span>Kiểu</span>
-                <span>${item.type}</span>
-            </div>
-            <div class="row">
-                <span>Mã giới thiệu</span>
-                <span class="copy">
-                    ${item.code}
-                    <img src="copy.svg" />
-                </span>
-            </div>
-            <div class="row">
-                <span>Tỷ lệ hoàn tiền</span>
-                <span>${item.cashback}</span>
-            </div>
+          <div class="row">
+            <span>Kiểu</span>
+            <span>${item.type}</span>
+          </div>
+
+          <div class="row">
+            <span>Mã giới thiệu</span>
+            <span class="copy">
+              ${item.code}
+              <img src="copy.svg" />
+            </span>
+          </div>
+
+          <div class="row">
+            <span>Tỷ lệ hoàn tiền</span>
+            <span>${item.cashback}</span>
+          </div>
         </div>
 
-        <button class="btn-register">
-            Đăng ký →
-        </button>
-    </div>
-`).join("");
-}
+        <button class="btn-register">Đăng ký →</button>
+      </div>
+    `).join("");
+    }
+
+    // 3) Render mặc định (tab All)
+    renderExchanges(exchanges);
+    observeScrollAnimations(grid);
+    // 4) Lấy danh sách các button tab bên trong #exchangeTabs
+    const tabs = tabsWrap.querySelectorAll(".tab");
+
+    // 5) Gắn sự kiện click cho từng tab
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+
+            // 5.1) Đổi UI active: xoá active của tất cả tab
+            tabs.forEach(t => t.classList.remove("active"));
+
+            // 5.2) Gán active cho tab đang bấm
+            tab.classList.add("active");
+
+            // 5.3) Lấy filter từ data-filter của tab
+            const filter = tab.dataset.filter;
+            // filter sẽ là: "all" | "forex" | "crypto" | "commodities"
+
+            // 5.4) Nếu bấm "all" -> render toàn bộ
+            if (filter === "all") {
+                renderExchanges(exchanges);
+                return;
+            }
+
+            // 5.5) Do data bạn dùng "commodity" nhưng tab dùng "commodities"
+            // map để khỏi phải sửa HTML
+            const map = { commodities: "commodity" };
+            const realFilter = map[filter] || filter;
+
+            // 5.6) Lọc exchanges theo category rồi render
+            const filtered = exchanges.filter(x => x.name === filter);
+            renderExchanges(filtered);
+        });
+    });
+
+});
+
 
 const dataFaq = [
     {
@@ -114,17 +180,20 @@ const dataFaq = [
 ]
 const questionContainer = document.getElementById("faq");
 if (questionContainer) {
-    questionContainer.innerHTML = dataFaq.map(item => `
+    questionContainer.innerHTML = dataFaq.map((item, idx) => {
+        const isOpen = idx === 0;
+        return `
     <div class="faq-item scroll-fade-in delay-1">
-                <div class="faq-question open">
+                <div class="faq-question${isOpen ? ' open' : ''}">
                     <span>${item.question}</span>
-                    <div class="faq-toggle">+</div>
+                    <div class="faq-toggle">${isOpen ? '−' : '+'}</div>
                 </div>
                 <div class="faq-answer">
                     ${item.answer}
                 </div>
             </div>
-`).join("");
+`;
+    }).join("");
 }
 
 const dataNews = [
@@ -169,19 +238,19 @@ if (featureContainer) {
 
 
 const dataPartners = [
-  { img: "./images/kucoin.png", title: "Partner 1" },
-  { img: "./images/kucoin.png", title: "Partner 2" },
-  { img: "./images/kucoin.png", title: "Partner 3" },
-  { img: "./images/kucoin.png", title: "Partner 4" },
-  { img: "./images/kucoin.png", title: "Partner 5" },
-  { img: "./images/kucoin.png", title: "Partner 6" },
+    { img: "./images/kucoin.png", title: "Partner 1" },
+    { img: "./images/kucoin.png", title: "Partner 2" },
+    { img: "./images/kucoin.png", title: "Partner 3" },
+    { img: "./images/kucoin.png", title: "Partner 4" },
+    { img: "./images/kucoin.png", title: "Partner 5" },
+    { img: "./images/kucoin.png", title: "Partner 6" },
 ];
 
 const listPartner = document.getElementById("partnerList");
 
 if (listPartner) {
-  // render 1 lần
-  listPartner.innerHTML = dataPartners.map(item => `
+    // render 1 lần
+    listPartner.innerHTML = dataPartners.map(item => `
     <div class="partnerbg">
       <div class="partner">
         <img src="${item.img}" alt="${item.title}" />
@@ -189,42 +258,41 @@ if (listPartner) {
     </div>
   `).join("");
 
-  // clone đúng 1 lần
-  listPartner.innerHTML = listPartner.innerHTML + listPartner.innerHTML + listPartner.innerHTML+ listPartner.innerHTML;
+    listPartner.innerHTML = listPartner.innerHTML + listPartner.innerHTML + listPartner.innerHTML + listPartner.innerHTML;
 
-  // bật marquee class sau khi đo xong để tránh nhảy
-  const start = () => {
-    // width đúng của "1 vòng" = nửa track
-    const loop = listPartner.scrollWidth / 2;
+    // bật marquee class sau khi đo xong để tránh nhảy
+    const start = () => {
+        // width đúng của "1 vòng" = nửa track
+        const loop = listPartner.scrollWidth / 2;
 
-    // set biến loop
-    listPartner.style.setProperty("--loop", `${loop}px`);
+        // set biến loop
+        listPartner.style.setProperty("--loop", `${loop}px`);
 
-    // tốc độ tính theo px/s
-    const speed = 90; // px/s
-    listPartner.style.animationDuration = `${loop / speed}s`;
+        // tốc độ tính theo px/s
+        const speed = 60;
+        listPartner.style.animationDuration = `${loop / speed}s`;
 
-    // bắt đầu chạy sau khi đã set xong
-    listPartner.classList.add("marquee");
-  };
+        // bắt đầu chạy sau khi đã set xong
+        listPartner.classList.add("marquee");
+    };
 
-  // đợi ảnh load xong để đo chính xác
-  const imgs = [...listPartner.querySelectorAll("img")];
-  let done = 0;
+    // đợi ảnh load xong để đo chính xác
+    const imgs = [...listPartner.querySelectorAll("img")];
+    let done = 0;
 
-  const tick = () => {
-    done++;
-    if (done >= imgs.length) start();
-  };
+    const tick = () => {
+        done++;
+        if (done >= imgs.length) start();
+    };
 
-  if (imgs.length === 0) start();
-  else {
-    imgs.forEach(img => {
-      if (img.complete) tick();
-      else {
-        img.addEventListener("load", tick);
-        img.addEventListener("error", tick);
-      }
-    });
-  }
+    if (imgs.length === 0) start();
+    else {
+        imgs.forEach(img => {
+            if (img.complete) tick();
+            else {
+                img.addEventListener("load", tick);
+                img.addEventListener("error", tick);
+            }
+        });
+    }
 }

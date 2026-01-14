@@ -29,39 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== SCROLL ANIMATION - OPTIMIZED ===== 
 // ===== SCROLL ANIMATION =====
-const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -15% 0px'
-};
-
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-
-    // 🔥 CASE 1: chỉ chạy 1 lần (coin)
-    if (entry.target.classList.contains('scroll-once')) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        scrollObserver.unobserve(entry.target); // ✅ CHỈ 1 LẦN
-      }
-      return;
-    }
-
-    // 🔥 CASE 2: các animation scroll bình thường
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    } else {
-      entry.target.classList.remove('active');
-    }
+    // toggle lên/xuống đều chạy
+    entry.target.classList.toggle("active", entry.isIntersecting);
   });
-}, observerOptions);
+}, {
+  threshold: 0.35,
+  rootMargin: "0px 0px -10% 0px" // vào sâu mới active => chống nhấp nháy mép
+});
 
-// Observe scroll animation elements
+// Auto add class nền scroll-anim nếu chưa có
 document.querySelectorAll(
-  '.scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in'
+  ".scroll-fade-in, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in, .scroll-rotate-in"
 ).forEach(el => {
-  el.style.willChange = 'transform, opacity';
+  el.classList.add("scroll-anim"); // ✅ base transition
   scrollObserver.observe(el);
 });
+
 
 
 // Observe exchange cards and feature items

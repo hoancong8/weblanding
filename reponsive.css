@@ -109,19 +109,32 @@
         max-height: 32px;
     }
 
-    .section2 {
-        transform: translateY(-90px);
-        position: relative;
+    .section2::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("./images/bgweb2.png");
+        background-size: cover;
+        background-position: top;
+        background-repeat: no-repeat;
+
+
+        /* LÙI BG LÊN */
         z-index: -1;
     }
 
+
+    /* .exchange-container {
+        position: relative;
+    } */
+    /* 
     .how-it-works {
         position: relative;
+        z-index: auto;
         top: auto;
         padding: 50px 20px 40px;
         margin-top: 0;
-
-    }
+    } */
 
     .how-inner {
         margin-top: 3%;
@@ -155,7 +168,8 @@
     .exchange-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         justify-items: center;
-        gap: 24px;
+        gap: 64px;
+        padding: 0px 24px;
     }
 
     .exchange-card {
@@ -212,36 +226,31 @@
 
     .wrapper {
         height: auto;
-        min-height: 700px;
-        margin-top: 50px;
-        margin-bottom: 5%;
-        padding: 0 20px;
+        min-height: auto;
+        margin-top: 14px;
+        margin-bottom: 0;
+        padding: 0 15px;
+        max-width: 100%;
     }
 
     .card {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
-        margin: 0 auto 20px !important;
+        margin: 10px auto !important;
         top: auto !important;
         left: auto !important;
         right: auto !important;
         bottom: auto !important;
-        padding: 15px;
+        padding: 14px 14px;
         gap: 12px;
-    }
-
-    .card.right .center {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-direction: row-reverse;
-
+        max-width: 420px;
+        box-sizing: border-box;
     }
 
     .card h4 {
         font-size: 14px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     .card p {
@@ -249,13 +258,55 @@
     }
 
     .card-icon {
-        min-width: 48px;
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
     }
 
-    .card-icon img {
-        width: 48px;
-        height: 48px;
+    .card.left.top,
+    .card.left.bottom,
+    .card.right {
+        position: relative !important;
     }
+
+    .right.top {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        display: none;
+    }
+
+    .center {
+        position: relative;
+        inset: auto;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+
+
+
+    .trees {
+        margin-top: 0;
+    }
+
+    .trees>.right.top {
+        display: none !important;
+    }
+
+    .center[style*="margin-left: 42%"] {
+        display: none !important;
+    }
+
+    .section3 {
+        position: relative;
+        z-index: -2;
+        transform: translateY(-5%);
+    }
+
+
+
 
     .faq-section {
         padding: 40px 20px;
@@ -277,21 +328,31 @@
         gap: 12px;
     }
 
+    .subtitle {
+        text-align: center;
+    }
+
+    .faq-question:hover {
+        background: transparent;
+        border-color: transparent;
+        transform: scale(1.02) translate3d(0, 0, 0);
+        box-shadow: none;
+    }
+
     .faq-answer {
-        padding: 0px 20px 0;
+        padding: 0px 20px 0 20px;
         font-size: 12px;
         width: 100%;
+        line-height: 1.5;
     }
 
     .faq-toggle {
         position: absolute;
-        z-index: 10;
         width: 32px;
         height: 32px;
-        font-size: 16px;
-        bottom: 100px;
-        /* right: -1600px; */
-        left: 37vh;
+        font-size: 12px;
+        top: -4vh;
+        right: -4vh;
     }
 
     .footer {
@@ -455,15 +516,18 @@
 
     /* Partners Section */
     .section2 {
-        position: relative;
-        z-index: -1;
-        transform: translateY(0px);
+        z-index: auto;
+        transform: none;
+        height: auto;
+        margin-top: 0;
+        padding-top: 0;
     }
+
     .exchange-container {
-        position: relative;
-        z-index: -1;
-        transform: translateY(0px);
+        z-index: auto;
+        transform: none;
     }
+
     .partners {
         padding: 20px 0 30px;
         min-height: auto;
@@ -528,15 +592,11 @@
     }
 
     /* Exchange Section */
-    .exchange-container {
-
-        transform: translateY(100px);
-    }
-
     .exchange-section {
         transform: none;
         margin-top: 0;
-        padding: 28px 15px;
+        padding-top: 18px;
+        padding-bottom: 28px;
         background: transparent;
         padding-left: 18px;
         padding-right: 18px;
@@ -550,7 +610,7 @@
     }
 
     .exchange-card {
-        max-width: 100%;
+        max-width: 90%;
         min-width: 0;
     }
 
@@ -595,6 +655,7 @@
     }
 
     .section-header {
+        
         margin-bottom: 20px;
     }
 
@@ -701,16 +762,16 @@
         display: none;
     }
 
-    .center {
+    /* .center {
         position: relative;
         inset: auto;
         margin: 0;
         width: 100%;
         height: auto;
-    }
+    } */
 
-    .center img {
-        display: none;
+    .card.right .center {
+        flex-direction: row-reverse;
     }
 
     .trees {
@@ -726,9 +787,7 @@
     }
 
     .section3 {
-        position: relative;
-        z-index: -2;
-        transform: translateY(-5%);
+        top: 10vh;
     }
 
     /* FAQ Section */
@@ -756,14 +815,19 @@
 
     .faq-item {
         height: auto;
-        margin-bottom: 12px;
-        border-radius: 8px;
+        margin-bottom: 14px;      /* add breathing room */
+        padding-top: 10px;        /* reserve space for .faq-toggle */
+        /* overflow: hidden;         */
     }
 
     .faq-question {
         padding: 12px 12px;
         font-size: 10px;
         gap: 8px;
+    }
+
+    .faq-question:hover {
+        transform: none;          /* prevent hover scale from colliding on small screens */
     }
 
     .faq-answer {
@@ -775,11 +839,12 @@
 
     .faq-toggle {
         position: absolute;
+        z-index: 100;
         width: 24px;
         height: 24px;
         font-size: 12px;
-        top: -8px;
-        right: 8px;
+        top: -2vh;
+        right: -1vh;
     }
 
     /* Footer */
@@ -944,38 +1009,33 @@
         max-width: 260px;
     }
 
-    /* .partners {
-        position: relative;
-        padding: 15px 0 20px;
+    .section2 {
+        transform: none;
         height: auto;
-        overflow: hidden;
+        z-index: auto;
+    }
+
+    .exchange-container {
+        transform: none;
+        position: relative;
+        z-index: auto;
+    }
+
+    .how-it-works {
+        transform: none;
+        margin-bottom: 24px;
+    }
+
+    .exchange-section {
+        display: block;
+        transform: none;
+        margin-top: 0;
     }
 
     .partner-list {
-        max-width: 100%;
-        margin: 10px 0 0 0;
-        padding: 8px 10px 10px;
-        gap: 6px;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        width: 100%;
-        box-sizing: border-box;
-        will-change: transform !important;
+        margin: 0;
     }
 
-    .partner-list::-webkit-scrollbar {
-        display: none;
-    } */
-     .section2{
-        transform: translateY(-8vh);
-     }
-     .section1{
-        margin: 0;
-     }
-     .partner-list{
-        margin: 0;
-     }
     .partnerbg {
         min-width: 70px;
         flex-shrink: 0;
@@ -999,7 +1059,6 @@
         margin-top: 0;
         margin-bottom: 24px;
         padding: 24px 12px 18px;
-        transform: translateY(4vh);
         position: relative;
     }
 
@@ -1116,11 +1175,13 @@
     .feature-date {
         font-size: 8px;
     }
-
+    .features-container{
+        transform: translateY(-15vh);
+    }
     .wrapper {
         height: auto;
         min-height: auto;
-        margin-top: 20px;
+        transform: translateY(-10vh);
         margin-bottom: 2%;
         padding: 0 12px;
     }
@@ -1144,7 +1205,9 @@
         font-size: 10px;
         margin-bottom: 4px;
     }
-
+    .card.right .center{
+        flex-direction: row-reverse;
+    }
     .card p {
         font-size: 8px;
     }
@@ -1240,13 +1303,14 @@
     }
 
     .faq-toggle {
+        position: absolute;
+        z-index: 100;
         width: 20px;
         height: 20px;
-        font-size: 10px;
-        top: -6px;
-        right: 6px;
+        font-size: 12px;
+        top: -2vh;
+        right: -2vh;
     }
-
     .footer {
         padding: 15px 12px 10px;
 

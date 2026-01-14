@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BackCom.Network</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="./scrollanim.css">
@@ -90,6 +91,7 @@
         </div>
     </section>
     <section class="section2">
+
         <div class="exchange-container">
             <div class="how-it-works">
                 <div class="how-inner">
@@ -99,15 +101,16 @@
                         và phí giao dịch của bạn sẽ được hoàn lại hàng ngày
                     </p>
 
-                    <div class="tabs">
-                        <button class="tab active">All</button>
-                        <button class="tab">Forex</button>
-                        <button class="tab">Crypto</button>
-                        <button class="tab">Hàng hoá</button>
+                    <div class="tabs" id="exchangeTabs">
+                        <button class="tab active" data-filter="all">All</button>
+                        <button class="tab" data-filter="MEXC">Forex</button>
+                        <button class="tab" data-filter="Kucoin">Crypto</button>
+                        <button class="tab" data-filter="Binance">Hàng hoá</button>
                     </div>
+
                 </div>
             </div>
-            <div class="exchange-section">
+            <div class="exchange-section" >
                 <div class="exchange-grid" id="exchangeGrid"></div>
             </div>
         </div>
@@ -200,7 +203,7 @@
     <section class="section4">
         <h2 class="title">Câu hỏi thường gặp</h2>
         <p class="subtitle">
-            Tìm câu trả lời cho các câu hỏi thường gặp về <strong>&lt;tenweb&gt;</strong><br />
+            Tìm câu trả lời cho các câu hỏi thường gặp về <strong>Bitb</strong>
             và các dịch vụ của chúng tôi
         </p>
         <div class="faq-box" id="faq">
