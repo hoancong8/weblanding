@@ -1135,6 +1135,10 @@
                 0 5px);
     }
 
+    .card-header-inner h4 {
+        font-size: 0.73em;
+    }
+
     .card-header img {
         height: 14px;
     }
@@ -1371,7 +1375,7 @@
         position: relative;
         z-index: 20;
     }
-    
+
     /* 2) Tabs chắc chắn nhận touch */
     .features-tab-item {
         position: relative;
@@ -1382,7 +1386,7 @@
     }
 
     /* 3) Các layer trang trí tuyệt đối không được ăn click */
-    .section2 img,
+    /* .section2 img, */
     /* fire.svg (và ảnh absolute trong section2) */
     .right.top,
     /* div coin absolute đang đè */
