@@ -12,7 +12,9 @@ const exchanges = [
     code: "96643",
     cashback: "Tối đa 60%",
     //phân loại
-    classify: "crypto"
+    classify: "crypto",
+    //link đăng ký
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/kucoin.png",
@@ -21,7 +23,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -30,7 +33,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -39,7 +43,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -48,7 +53,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -57,7 +63,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -66,7 +73,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -75,7 +83,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "./images/binance.png",
@@ -84,7 +93,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "crypto"
+    classify: "crypto",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
 
   //forex
@@ -95,7 +105,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "forex"
+    classify: "forex",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "",
@@ -104,7 +115,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "forex"
+    classify: "forex",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   },
   {
     logo: "",
@@ -113,7 +125,8 @@ const exchanges = [
     type: "Hàng ngày",
     code: "96643",
     cashback: "Tối đa 60%",
-    classify: "forex"
+    classify: "forex",
+    link:"https://cellphones.com.vn/sforum/meme-meo-cuoi"
   }
 ];
 
@@ -174,7 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         </div>
 
-        <button class="btn-register">Đăng ký →</button>
+        <a class="btn-register" href="${item.link}">Đăng ký →</a>
       </div>
     `).join("");
   }

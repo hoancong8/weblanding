@@ -486,7 +486,7 @@
 .btn-register {
     margin-top: 18px;
 
-    width: 100%;
+    /* width: 100%; */
     padding: 12px 20px;
     border-radius: 12px;
     background: transparent;
@@ -500,6 +500,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    text-decoration: none;
 }
 
 .btn-register span {
